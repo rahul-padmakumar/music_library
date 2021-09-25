@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/music_library_navigation"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.musiclibrary.ui.dashboard.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.musiclibrary.ui.authentication.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.musiclibrary.ui.authentication.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
+    <fragment
+        android:id="@+id/playlistDetailFragment"
+        android:name="com.example.musiclibrary.ui.playlist.PlaylistDetailFragment"
+        android:label="PlaylistDetailFragment" />
+    <fragment
+        android:id="@+id/dashboardPlayListFragment"
+        android:name="com.example.musiclibrary.ui.dashboard.DashboardPlayListFragment"
+        android:label="fragment_dashboard_play_list"
+        tools:layout="@layout/fragment_dashboard_play_list" >
+        <action
+            android:id="@+id/action_dashboardPlayListFragment_to_playlistDetailFragment"
+            app:destination="@id/playlistDetailFragment" />
+        <action
+            android:id="@+id/action_dashboardPlayListFragment_to_playlistCreationFragment"
+            app:destination="@id/playlistCreationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardSongsFragment"
+        android:name="com.example.musiclibrary.ui.dashboard.DashboardSongsFragment"
+        android:label="fragment_dashboard_songs"
+        tools:layout="@layout/fragment_dashboard_songs" >
+        <action
+            android:id="@+id/action_dashboardSongsFragment_to_songCreationFragment"
+            app:destination="@id/songCreationFragment" />
+        <action
+            android:id="@+id/action_dashboardSongsFragment_to_songDetailFragment"
+            app:destination="@id/songDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playlistCreationFragment"
+        android:name="com.example.musiclibrary.ui.playlist.PlaylistCreationFragment"
+        android:label="fragment_playlist_creation"
+        tools:layout="@layout/fragment_playlist_creation" />
+    <fragment
+        android:id="@+id/songCreationFragment"
+        android:name="com.example.musiclibrary.ui.song.SongCreationFragment"
+        android:label="fragment_song_creation"
+        tools:layout="@layout/fragment_song_creation" />
+    <fragment
+        android:id="@+id/songDetailFragment"
+        android:name="com.example.musiclibrary.ui.song.SongDetailFragment"
+        android:label="fragment_song_detail"
+        tools:layout="@layout/fragment_song_detail" />
+</navigation>
