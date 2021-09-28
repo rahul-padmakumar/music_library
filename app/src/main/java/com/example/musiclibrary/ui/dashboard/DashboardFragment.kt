@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.musiclibrary.R
 import com.example.musiclibrary.datastore.UserPreferences
+import com.example.musiclibrary.ui.authentication.LoginFragment
 
 /**
  * A simple [Fragment] subclass.
@@ -20,6 +22,24 @@ class DashboardFragment : Fragment() {
 
     private val dashboardViewModel by lazy {
         ViewModelProvider(this).get(DashboardViewModel::class.java)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val navController = findNavController()
+        val currentBackStackEntry = navController.currentBackStackEntry
+        currentBackStackEntry?.run {
+            savedStateHandle.getLiveData<Boolean>(LoginFragment.IS_USER_SIGNED_IN)
+                .observe(
+                    this,
+                    {
+                        if(!it){
+                            requireActivity().finish()
+                        }
+                    }
+                )
+        }
     }
 
     override fun onCreateView(
@@ -54,6 +74,6 @@ class DashboardFragment : Fragment() {
          * @return A new instance of fragment DashboardFragment.
          */
         @JvmStatic
-        fun newInstance(param1: String, param2: String) = DashboardFragment()
+        fun newInstance() = DashboardFragment()
     }
 }

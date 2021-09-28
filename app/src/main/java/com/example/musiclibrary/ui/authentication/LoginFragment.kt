@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.SavedStateHandle
+import androidx.navigation.Navigation
 import com.example.musiclibrary.R
 
 /**
@@ -14,6 +16,8 @@ import com.example.musiclibrary.R
  */
 class LoginFragment : Fragment() {
 
+    private var savedStateHandle: SavedStateHandle? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,7 +26,18 @@ class LoginFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        savedStateHandle = Navigation.findNavController(requireActivity(), R.id.fcv_music_library)
+            .previousBackStackEntry?.savedStateHandle
+        savedStateHandle?.set(IS_USER_SIGNED_IN, false)
+    }
+
     companion object {
+
+        const val IS_USER_SIGNED_IN = "music_library_is_user_signed_in"
+
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
