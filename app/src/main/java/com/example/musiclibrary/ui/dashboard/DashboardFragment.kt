@@ -58,7 +58,7 @@ class DashboardFragment : Fragment() {
             {
                 if(it == 0){
                     Navigation.findNavController(requireActivity(), R.id.fcv_music_library)
-                        .navigate(R.id.action_dashboardFragment_to_loginFragment)
+                        .navigate(DashboardFragmentDirections.actionDashboardFragmentToLoginFragment())
                 } else {
                     dashboardViewModel.userId = it
                 }
