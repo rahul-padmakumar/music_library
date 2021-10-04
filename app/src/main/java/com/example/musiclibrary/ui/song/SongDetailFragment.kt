@@ -30,6 +30,6 @@ class SongDetailFragment : Fragment() {
          * @return A new instance of fragment SongDetailFragment.
          */
         @JvmStatic
-        fun newInstance(param1: String, param2: String) = SongDetailFragment()
+        fun newInstance() = SongDetailFragment()
     }
 }
