@@ -1,5 +1,6 @@
 package com.example.musiclibrary.ui.dashboard
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,9 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.example.musiclibrary.MusicLibraryApplication
 import com.example.musiclibrary.R
 import com.example.musiclibrary.datastore.UserPreferences
+import com.example.musiclibrary.di.AppComponent
 import com.example.musiclibrary.ui.authentication.LoginFragment
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
@@ -20,8 +24,11 @@ import com.example.musiclibrary.ui.authentication.LoginFragment
  */
 class DashboardFragment : Fragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private val dashboardViewModel by lazy {
-        ViewModelProvider(this).get(DashboardViewModel::class.java)
+        ViewModelProvider(this, viewModelFactory).get(DashboardViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +47,11 @@ class DashboardFragment : Fragment() {
                     }
                 )
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MusicLibraryApplication).appComponent.inject(this)
     }
 
     override fun onCreateView(
