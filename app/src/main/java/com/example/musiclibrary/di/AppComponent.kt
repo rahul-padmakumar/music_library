@@ -12,7 +12,8 @@ import javax.inject.Singleton
 @Component(modules = [ApplicationModule::class,
     AuthenticationModule::class,
     DashboardModule::class,
-    ViewModelModule::class])
+    ViewModelModule::class,
+    SubcomponentModules::class])
 interface AppComponent {
     @Component.Factory
     interface Factory{
@@ -20,4 +21,6 @@ interface AppComponent {
     }
 
     fun inject(dashboardFragment: DashboardFragment)
+
+    fun loginSubComponent(): LoginSubComponent.LoginBuilder
 }

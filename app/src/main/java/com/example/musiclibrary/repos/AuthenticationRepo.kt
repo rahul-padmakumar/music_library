@@ -1,9 +1,9 @@
 package com.example.musiclibrary.repos
 
-import com.example.musiclibrary.datasource.db.entities.User
+import com.example.musiclibrary.models.UserModel
 
 interface AuthenticationRepo {
-    suspend fun insertUser(user: User)
-    suspend fun getUserInfo(userName: String, password: String): User
-    suspend fun getUserInfo(id: Int): User
+    suspend fun insertUser(userModel: UserModel)
+    suspend fun getUserInfo(userName: String, password: String): UserModel?
+    suspend fun getUserInfo(id: Int): UserModel?
 }

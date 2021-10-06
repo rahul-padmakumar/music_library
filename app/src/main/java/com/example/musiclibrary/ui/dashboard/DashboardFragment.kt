@@ -14,7 +14,9 @@ import com.example.musiclibrary.MusicLibraryApplication
 import com.example.musiclibrary.R
 import com.example.musiclibrary.datastore.UserPreferences
 import com.example.musiclibrary.di.AppComponent
+import com.example.musiclibrary.models.UserModel
 import com.example.musiclibrary.ui.authentication.LoginFragment
+import com.example.musiclibrary.ui.authentication.LoginViewModel
 import javax.inject.Inject
 
 /**
@@ -65,17 +67,19 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        UserPreferences.getUserId(requireContext()).asLiveData().observe(
-            viewLifecycleOwner,
-            {
-                if(it == 0){
-                    Navigation.findNavController(requireActivity(), R.id.fcv_music_library)
-                        .navigate(DashboardFragmentDirections.actionDashboardFragmentToLoginFragment())
-                } else {
-                    dashboardViewModel.userId = it
+        if(savedInstanceState == null) {
+            UserPreferences.getUserId(requireContext()).asLiveData().observe(
+                viewLifecycleOwner,
+                {
+                    if (it == 0) {
+                        Navigation.findNavController(requireActivity(), R.id.fcv_music_library)
+                            .navigate(DashboardFragmentDirections.actionDashboardFragmentToLoginFragment())
+                    } else {
+                        dashboardViewModel.userId = it
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     companion object {

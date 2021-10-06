@@ -9,12 +9,10 @@ import dagger.Provides
 import dagger.multibindings.IntoMap
 
 @Module
-class DashboardModule {
+abstract class DashboardModule {
 
-    @Provides
+    @Binds
     @IntoMap
     @ViewModelKey(DashboardViewModel::class)
-    fun bindDashboardViewModel(): ViewModel{
-        return DashboardViewModel()
-    }
+    abstract fun bindDashboardViewModel(dashboardViewModel: DashboardViewModel): ViewModel
 }

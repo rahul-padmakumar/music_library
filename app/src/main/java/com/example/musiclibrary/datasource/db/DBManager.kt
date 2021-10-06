@@ -13,11 +13,11 @@ class DBManager @Inject constructor(val musicLibraryDatabase: MusicLibraryDataba
         musicLibraryDatabase.userDao().addUser(user)
     }
 
-    suspend fun getUser(userName: String, password: String): User{
+    suspend fun getUser(userName: String, password: String): User?{
         return musicLibraryDatabase.userDao().getUser(userName, password)
     }
 
-    suspend fun getUser(id: Int): User{
+    suspend fun getUser(id: Int): User?{
         return musicLibraryDatabase.userDao().getUser(id)
     }
 }
