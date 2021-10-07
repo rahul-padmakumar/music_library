@@ -27,8 +27,6 @@ class LoginFragment : Fragment() {
     @Inject
     lateinit var musicLibraryViewModelFactory: ViewModelProvider.Factory
 
-    @Inject lateinit var useModel: UserModel
-
     private val loginViewModel by lazy {
         ViewModelProvider(this, musicLibraryViewModelFactory).get(LoginViewModel::class.java)
     }

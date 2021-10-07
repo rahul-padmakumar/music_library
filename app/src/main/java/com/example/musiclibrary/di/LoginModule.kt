@@ -19,9 +19,4 @@ class LoginModule {
     fun loginViewModelProvider(authenticationRepo: AuthenticationRepo): ViewModel {
         return LoginViewModel(authenticationRepo)
     }
-
-    @Provides
-    fun userProvider(): UserModel {
-        return UserModel("", "", 0, Address("", "", "", "", ""))
-    }
 }
