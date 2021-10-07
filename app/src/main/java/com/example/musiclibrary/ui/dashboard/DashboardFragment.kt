@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.musiclibrary.MusicLibraryApplication
 import com.example.musiclibrary.R
 import com.example.musiclibrary.datastore.UserPreferences
+import com.example.musiclibrary.datastore.dataStore
 import com.example.musiclibrary.di.AppComponent
 import com.example.musiclibrary.models.UserModel
 import com.example.musiclibrary.ui.authentication.LoginFragment
@@ -68,7 +69,7 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if(savedInstanceState == null) {
-            UserPreferences.getUserId(requireContext()).asLiveData().observe(
+            UserPreferences.getUserId(requireContext().dataStore).asLiveData().observe(
                 viewLifecycleOwner,
                 {
                     if (it == 0) {

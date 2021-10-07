@@ -1,5 +1,7 @@
 package com.example.musiclibrary.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.ViewModel
 import com.example.musiclibrary.datasource.db.entities.Address
 import com.example.musiclibrary.di.scope.ViewModelKey
@@ -16,7 +18,7 @@ class LoginModule {
     @Provides
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
-    fun loginViewModelProvider(authenticationRepo: AuthenticationRepo): ViewModel {
-        return LoginViewModel(authenticationRepo)
+    fun loginViewModelProvider(authenticationRepo: AuthenticationRepo, dataStore: DataStore<Preferences>): ViewModel {
+        return LoginViewModel(authenticationRepo, dataStore)
     }
 }

@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.musiclibrary.MusicLibraryApplication
 import com.example.musiclibrary.R
-import com.example.musiclibrary.di.MusicLibraryViewModelFactory
+import com.example.musiclibrary.databinding.FragmentLoginBinding
 import com.example.musiclibrary.models.Resource
-import com.example.musiclibrary.models.UserModel
 import javax.inject.Inject
 
 /**
@@ -26,6 +26,8 @@ class LoginFragment : Fragment() {
 
     @Inject
     lateinit var musicLibraryViewModelFactory: ViewModelProvider.Factory
+
+    private var binding: FragmentLoginBinding? = null
 
     private val loginViewModel by lazy {
         ViewModelProvider(this, musicLibraryViewModelFactory).get(LoginViewModel::class.java)
@@ -47,7 +49,8 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,14 +64,35 @@ class LoginFragment : Fragment() {
             viewLifecycleOwner,
             {
                 when(it){
-                    is Resource.Success -> Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
+                    is Resource.Success -> {
+                        savedStateHandle?.set(IS_USER_SIGNED_IN, true)
+                        findNavController().popBackStack()
+                    }
                     is Resource.Failure -> Toast.makeText(requireContext(), it.errorMessage, Toast.LENGTH_SHORT).show()
                     is Resource.Progress -> Toast.makeText(requireContext(), "Progressing", Toast.LENGTH_SHORT).show()
                 }
             }
         )
 
-        loginViewModel.validateAndLogin("rahul", null)
+        binding?.run {
+            btnLogin.setOnClickListener {
+                loginViewModel.validateAndLogin(
+                    txtUserName.text.toString(),
+                    txtPassword.text.toString()
+                )
+            }
+
+            btnSignup.setOnClickListener {
+                findNavController().navigate(
+                    LoginFragmentDirections.actionLoginFragmentToSignUpFragment(txtUserName.text.toString())
+                )
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
     companion object {

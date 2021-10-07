@@ -29,7 +29,13 @@
         android:id="@+id/signUpFragment"
         android:name="com.example.musiclibrary.ui.authentication.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up">
+        <argument
+            android:name="args_user_name"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+    </fragment>
     <fragment
         android:id="@+id/playlistDetailFragment"
         android:name="com.example.musiclibrary.ui.playlist.PlaylistDetailFragment"

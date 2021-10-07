@@ -1,15 +1,19 @@
 package com.example.musiclibrary.ui.authentication
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.musiclibrary.datastore.UserPreferences
 import com.example.musiclibrary.models.Resource
 import com.example.musiclibrary.models.UserModel
 import com.example.musiclibrary.repos.AuthenticationRepo
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LoginViewModel(private val authenticationRepo: AuthenticationRepo): ViewModel(){
+class LoginViewModel(private val authenticationRepo: AuthenticationRepo,
+                     private val dataStore: DataStore<Preferences>): ViewModel(){
 
     val loginResponseLiveData = MutableLiveData<Resource<UserModel>>()
 
@@ -28,6 +32,7 @@ class LoginViewModel(private val authenticationRepo: AuthenticationRepo): ViewMo
             if(userModel == null){
                 loginResponseLiveData.postValue(Resource.Failure(errorMessage = "User not found"))
             } else {
+                UserPreferences.setUserID(dataStore, userModel.id)
                 loginResponseLiveData.postValue(Resource.Success(userModel))
             }
         }
