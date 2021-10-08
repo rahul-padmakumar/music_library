@@ -1,4 +1,4 @@
-package com.example.musiclibrary.ui.authentication
+package com.example.musiclibrary.ui.authentication.login
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -10,7 +10,6 @@ import com.example.musiclibrary.models.Resource
 import com.example.musiclibrary.models.UserModel
 import com.example.musiclibrary.repos.AuthenticationRepo
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class LoginViewModel(private val authenticationRepo: AuthenticationRepo,
                      private val dataStore: DataStore<Preferences>): ViewModel(){

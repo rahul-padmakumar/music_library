@@ -1,6 +1,6 @@
 package com.example.musiclibrary.di
 
-import com.example.musiclibrary.ui.authentication.LoginFragment
+import com.example.musiclibrary.ui.authentication.login.LoginFragment
 import dagger.Subcomponent
 
 @Subcomponent(modules = [LoginModule::class])
