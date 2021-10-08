@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.musiclibrary.datasource.db.daos.LibraryDao
 import com.example.musiclibrary.datasource.db.daos.UserDao
 import com.example.musiclibrary.datasource.db.entities.*
 import com.example.musiclibrary.datasource.db.views.LibraryUserDetail
@@ -14,4 +15,5 @@ version = 1)
 abstract class MusicLibraryDatabase: RoomDatabase(){
 
     abstract fun userDao(): UserDao
+    abstract fun libraryDao(): LibraryDao
 }

@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 @Entity(foreignKeys = [ForeignKey(entity = User::class, parentColumns = ["id"], childColumns = ["user_id"])])
 data class Library(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id")val libraryId: Int,
-    @ColumnInfo(name = "user_id") val userId: String
+    @ColumnInfo(name = "user_id") val userId: Int
 )

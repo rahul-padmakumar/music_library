@@ -11,7 +11,9 @@ import javax.inject.Singleton
     AuthenticationModule::class,
     DashboardModule::class,
     ViewModelModule::class,
-    SubcomponentModules::class])
+    SubcomponentModules::class,
+    LibraryModule::class
+])
 interface AppComponent {
     @Component.Factory
     interface Factory{
