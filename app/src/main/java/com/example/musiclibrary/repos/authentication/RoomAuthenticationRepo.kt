@@ -1,4 +1,4 @@
-package com.example.musiclibrary.repos
+package com.example.musiclibrary.repos.authentication
 
 import com.example.musiclibrary.datasource.db.DBManager
 import com.example.musiclibrary.models.UserModel
