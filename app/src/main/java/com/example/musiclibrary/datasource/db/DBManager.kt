@@ -11,8 +11,8 @@ import javax.inject.Singleton
 @Singleton
 class DBManager @Inject constructor(val musicLibraryDatabase: MusicLibraryDatabase){
 
-    suspend fun insertUser(user: User){
-        musicLibraryDatabase.userDao().addUser(user)
+    suspend fun insertUser(user: User): Long{
+        return musicLibraryDatabase.userDao().addUser(user)
     }
 
     suspend fun getUser(userName: String, password: String): User?{
