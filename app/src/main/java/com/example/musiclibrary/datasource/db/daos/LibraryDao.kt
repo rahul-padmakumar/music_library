@@ -9,8 +9,8 @@ import com.example.musiclibrary.datasource.db.relations.UserAndLibrary
 @Dao
 interface LibraryDao {
     @Insert
-    fun addLibrary(library: Library)
+    suspend fun addLibrary(library: Library)
 
     @Query("SELECT * FROM USER WHERE id = :userId")
-    fun getLibraryOfUser(userId: Int): List<UserAndLibrary>
+    suspend fun getLibraryOfUser(userId: Int): List<UserAndLibrary>
 }
