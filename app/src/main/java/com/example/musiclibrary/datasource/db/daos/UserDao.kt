@@ -9,7 +9,7 @@ import com.example.musiclibrary.datasource.db.entities.User
 interface UserDao {
 
     @Insert
-    suspend fun addUser(user: User)
+    suspend fun addUser(user: User): Long
 
     @Query("SELECT * FROM user WHERE id = :id")
     suspend fun getUser(id: Int): User?

@@ -14,10 +14,7 @@ import com.example.musiclibrary.MusicLibraryApplication
 import com.example.musiclibrary.R
 import com.example.musiclibrary.datastore.UserPreferences
 import com.example.musiclibrary.datastore.dataStore
-import com.example.musiclibrary.di.AppComponent
-import com.example.musiclibrary.models.UserModel
-import com.example.musiclibrary.ui.authentication.LoginFragment
-import com.example.musiclibrary.ui.authentication.LoginViewModel
+import com.example.musiclibrary.ui.authentication.login.LoginFragment
 import javax.inject.Inject
 
 /**

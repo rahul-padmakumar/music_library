@@ -1,4 +1,4 @@
-package com.example.musiclibrary.repos
+package com.example.musiclibrary.repos.authentication
 
 import com.example.musiclibrary.datasource.db.DBManager
 import com.example.musiclibrary.models.UserModel
@@ -11,8 +11,8 @@ class RoomAuthenticationRepo(
     private val userToUserModelMapper: UserToUserModelMapper
 ): AuthenticationRepo {
 
-    override suspend fun insertUser(userModel: UserModel) {
-        dbManager.insertUser(userModelToUserMapper.to(userModel))
+    override suspend fun insertUser(userModel: UserModel): Long {
+        return dbManager.insertUser(userModelToUserMapper.to(userModel))
     }
 
     override suspend fun getUserInfo(userName: String, password: String): UserModel? {

@@ -1,4 +1,4 @@
-package com.example.musiclibrary.ui.authentication
+package com.example.musiclibrary.ui.authentication.login
 
 import android.content.Context
 import android.os.Bundle
