@@ -2,16 +2,18 @@ package com.example.musiclibrary.ui.dashboard
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.musiclibrary.MusicLibraryApplication
 import com.example.musiclibrary.R
+import com.example.musiclibrary.databinding.FragmentDashboardBinding
 import com.example.musiclibrary.datastore.UserPreferences
 import com.example.musiclibrary.datastore.dataStore
 import com.example.musiclibrary.ui.authentication.login.LoginFragment
@@ -30,6 +32,8 @@ class DashboardFragment : Fragment() {
     private val dashboardViewModel by lazy {
         ViewModelProvider(this, viewModelFactory).get(DashboardViewModel::class.java)
     }
+
+    private var fragmentDashboardBinding: FragmentDashboardBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +63,12 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+        fragmentDashboardBinding = FragmentDashboardBinding.inflate(
+            inflater,
+            container,
+            false
+        )
+        return fragmentDashboardBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,6 +86,14 @@ class DashboardFragment : Fragment() {
                     }
                 }
             )
+        }
+
+        fragmentDashboardBinding?.run {
+            val navController = childFragmentManager.findFragmentById(R.id.nav_host_dashboard_fragment)
+                ?.findNavController()
+            navController?.let {
+                bnvDashboard.setupWithNavController(it)
+            }
         }
     }
 
