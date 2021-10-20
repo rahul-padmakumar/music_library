@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/songs_navigation"
+    app:startDestination="@id/dashboardSongsFragment">
+
+    <fragment
+        android:id="@+id/dashboardSongsFragment"
+        android:name="com.example.musiclibrary.ui.dashboard.DashboardSongsFragment"
+        android:label="fragment_dashboard_songs">
+        <action
+            android:id="@+id/action_dashboardSongsFragment_to_songCreationFragment"
+            app:destination="@id/songCreationFragment" />
+        <action
+            android:id="@+id/action_dashboardSongsFragment_to_songDetailFragment"
+            app:destination="@id/songDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/songCreationFragment"
+        android:name="com.example.musiclibrary.ui.song.SongCreationFragment"
+        android:label="fragment_song_creation"
+        tools:layout="@layout/fragment_song_creation" />
+
+    <fragment
+        android:id="@+id/songDetailFragment"
+        android:name="com.example.musiclibrary.ui.song.SongDetailFragment"
+        android:label="fragment_song_detail"
+        tools:layout="@layout/fragment_song_detail" />
+</navigation>

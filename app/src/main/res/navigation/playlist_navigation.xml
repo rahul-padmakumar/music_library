@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playlist_navigation"
+    app:startDestination="@id/dashboardPlayListFragment">
+
+    <fragment
+        android:id="@+id/playlistDetailFragment"
+        android:name="com.example.musiclibrary.ui.playlist.PlaylistDetailFragment"
+        android:label="PlaylistDetailFragment" />
+    <fragment
+        android:id="@+id/dashboardPlayListFragment"
+        android:name="com.example.musiclibrary.ui.dashboard.DashboardPlayListFragment"
+        android:label="fragment_dashboard_play_list"
+        tools:layout="@layout/fragment_dashboard_play_list" >
+        <action
+            android:id="@+id/action_dashboardPlayListFragment_to_playlistDetailFragment"
+            app:destination="@id/playlistDetailFragment" />
+        <action
+            android:id="@+id/action_dashboardPlayListFragment_to_playlistCreationFragment"
+            app:destination="@id/playlistCreationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/playlistCreationFragment"
+        android:name="com.example.musiclibrary.ui.playlist.PlaylistCreationFragment"
+        android:label="fragment_playlist_creation"
+        tools:layout="@layout/fragment_playlist_creation" />
+</navigation>
